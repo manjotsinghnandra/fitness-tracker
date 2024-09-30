@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tracker - Fitness Health Tracker</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f4f8; color: #333;">
+    <header style="background: #4CAF50; color: #fff; padding: 15px; text-align: center;">
+        <h1>Water Tracker</h1>
+        <nav>
+            <a href="home.html" style="color: #fff; margin: 0 15px;">Home</a>
+            <a href="dashboard.html" style="color: #fff; margin: 0 15px;">Dashboard</a>
+            <a href="activity_tracker.html" style="color: #fff; margin: 0 15px;">Activity Tracker</a>
+            <a href="food_tracker.html" style="color: #fff; margin: 0 15px;">Food Tracker</a>
+            <a href="goals.html" style="color: #fff; margin: 0 15px;">Goals</a>
+            <a href="index.html" style="color: #fff; margin: 0 15px;">Logout</a>
+        </nav>
+    </header>
+    <main style="padding: 20px;">
+        <section style="margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-width: 400px;">
+            <h2>Log Your Water Intake</h2>
+            <form id="waterForm">
+                <input type="number" id="waterAmount" placeholder="Water Amount (ml)" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+                <button type="submit" style="width: 100%; padding: 10px; background: #4CAF50; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Log Water</button>
+            </form>
+            <h3 id="waterLog" style="margin-top: 20px;"></h3>
+        </section>
+    </main>
+    <script>
+        document.getElementById('waterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const waterAmount = document.getElementById('waterAmount').value;
+
+            const waters = JSON.parse(localStorage.getItem('waters')) || [];
+            waters.push({ amount: waterAmount });
+            localStorage.setItem('waters', JSON.stringify(waters));
+
+            displayWaterIntake();
+            this.reset();
+        });
+
+        function displayWaterIntake() {
+            const waters = JSON.parse(localStorage.getItem('waters')) || [];
+            const waterLog = document.getElementById('waterLog');
+            waterLog.innerHTML = '<h4>Your Water Intake:</h4>' + waters.map(water => 
+                `<p>${water.amount} ml</p>`
+            ).join('');
+        }
+
+        // Load water intake on page load
+        document.addEventListener('DOMContentLoaded', displayWaterIntake);
+    </script>
+</body>
+</html>

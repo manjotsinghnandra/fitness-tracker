@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals - Fitness Health Tracker</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f4f8; color: #333;">
+    <header style="background: #4CAF50; color: #fff; padding: 15px; text-align: center;">
+        <h1>Set Your Goals</h1>
+        <nav>
+            <a href="home.html" style="color: #fff; margin: 0 15px;">Home</a>
+            <a href="dashboard.html" style="color: #fff; margin: 0 15px;">Dashboard</a>
+            <a href="food_tracker.html" style="color: #fff; margin: 0 15px;">Food Tracker</a>
+            <a href="water_tracker.html" style="color: #fff; margin: 0 15px;">Water Tracker</a>
+            <a href="activity_tracker.html" style="color: #fff; margin: 0 15px;">Activity Tracker</a>
+            <a href="index.html" style="color: #fff; margin: 0 15px;">Logout</a>
+        </nav>
+    </header>
+    <main style="padding: 20px;">
+        <section style="margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-width: 400px;">
+            <form id="goalForm">
+                <h2>Your Goals</h2>
+                <input type="number" id="calorieGoal" placeholder="Daily Calorie Goal" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+                <input type="number" id="weightGoal" placeholder="Target Weight (kg)" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+                <button type="submit" style="width: 100%; padding: 10px; background: #4CAF50; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Set Goals</button>
+            </form>
+            <h3 id="goalInfo" style="margin-top: 20px;"></h3>
+        </section>
+    </main>
+    <script>
+        document.getElementById('goalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const calorieGoal = document.getElementById('calorieGoal').value;
+            const weightGoal = document.getElementById('weightGoal').value;
+            localStorage.setItem('calorieGoal', calorieGoal);
+            localStorage.setItem('weightGoal', weightGoal);
+            document.getElementById('goalInfo').innerText = `Calorie Goal: ${calorieGoal}, Weight Goal: ${weightGoal} kg`;
+        });
+
+        // Load goals if set
+        document.addEventListener('DOMContentLoaded', function() {
+            const calorieGoal = localStorage.getItem('calorieGoal');
+            const weightGoal = localStorage.getItem('weightGoal');
+            if (calorieGoal && weightGoal) {
+                document.getElementById('goalInfo').innerText = `Calorie Goal: ${calorieGoal}, Weight Goal: ${weightGoal} kg`;
+            }
+        });
+    </script>
+</body>
+</html>

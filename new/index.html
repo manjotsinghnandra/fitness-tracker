@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Health Tracker - Login</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f4f8; color: #333;">
+    <header style="background: #4CAF50; color: #fff; padding: 15px; text-align: center;">
+        <h1>Fitness Health Tracker</h1>
+    </header>
+    <main style="padding: 20px; text-align: center;">
+        <h2>Login or Register</h2>
+        <form id="authForm" style="max-width: 300px; margin: auto;">
+            <input type="email" id="email" placeholder="Email" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+            <input type="password" id="password" placeholder="Password" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
+            <button type="submit" style="width: 100%; padding: 10px; background: #4CAF50; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Login</button>
+            <p style="margin-top: 10px;">Don't have an account? <a href="#" id="registerLink">Register</a></p>
+        </form>
+    </main>
+    <script>
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            localStorage.setItem('userEmail', email);
+            window.location.href = 'home.html';
+        });
+
+        document.getElementById('registerLink').addEventListener('click', function() {
+            alert('Registration functionality is not implemented in this demo.');
+        });
+    </script>
+</body>
+</html>
